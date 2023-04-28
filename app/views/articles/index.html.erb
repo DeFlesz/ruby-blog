@@ -1,4 +1,14 @@
-<div class="m-2">
+<div class="m-2 ">
+<% if user_signed_in? %>
+    <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-link" %>
+    <% if current_user.admin? %>
+        jesteś adminem harry
+    <% end %>
+<% else %>
+    <%= button_to "Sign in", new_user_session_path, class: "btn btn-link" %>
+    <%# <button class="btn btn-link">Sign in</button><button class="btn btn-link">Sign up</button> %>
+<% end %>
+
 <div class="card" style="margin: auto; max-width: 48rem;">
     <div class="card-body">
     <%# <h2 class="card-title" >Articles:</h2> %>
@@ -17,12 +27,26 @@
             Nie ma artykułów :c
         <% end %>
         <% @articles.each do |article| %>
-            <% unless article.archived? %>
+            <% unless article.archived? || current_user == article.user %>
                 <%= render "article_list_item", article: article %>
             <% end %>
         <% end %>
     </ul>
+
+
+    <% if user_signed_in? && current_user.articles.length != 0%>
+        <hr>
+        Your articles
+        <ul class="list-group mb-3">
+            <% current_user.articles.each do |article| %>
+                <%= render "article_list_item", article: article %>
+            <% end %>
+        </ul>
+    <% end %>
+
+    <% if user_signed_in? %>
     <%= link_to "New Article", new_article_path, class: "btn btn-primary" %>
+    <% end %>
     </div>
 </div>
 </div>
