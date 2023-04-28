@@ -1,0 +1,35 @@
+<div class="m-2">
+<div class="card" style="margin: auto; max-width: 48rem;">
+    <div class="card-body">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><%= link_to "Articles", articles_path %></li>
+                <li class="breadcrumb-item active" aria-current="page"><%= @article.title %></li>
+            </ol>
+        </nav>
+
+        <%# <h5 class="card-title"></h5> %>
+        <p class="card-text"><%= @article.body %></p>
+        <%= link_to "Edit", edit_article_path, class: "btn btn-primary mt-3" %>
+
+        <%= link_to "Destroy", article_path(@article), data: {
+            turbo_method: :delete,
+            turbo_confirm: "Are you sure?"
+        }, class: "btn btn-danger ms-1 mt-3" %>
+
+        <hr>
+
+        <h4>Add comment</h4>
+
+        <%= render "comments/form" %>
+
+        <hr>
+
+        <h4>Comments</h4>
+        <% if Comment.public_count < 1 %>
+            Nie ma komentarzy :c
+        <% end %>
+        <%= render @article.comments %>
+    </div>
+</div>
+</div>

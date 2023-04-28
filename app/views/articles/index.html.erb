@@ -1,0 +1,28 @@
+<div class="m-2">
+<div class="card" style="margin: auto; max-width: 48rem;">
+    <div class="card-body">
+    <%# <h2 class="card-title" >Articles:</h2> %>
+    <div class="d-flex justify-content-between">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active">Articles</li>
+            </ol>
+        </nav>
+        <span><%= Article.public_count %> public articles</span>
+    </div>
+
+
+    <ul class="list-group mb-3">
+        <% if Article.public_count < 1 %>
+            Nie ma artykułów :c
+        <% end %>
+        <% @articles.each do |article| %>
+            <% unless article.archived? %>
+                <%= render "article_list_item", article: article %>
+            <% end %>
+        <% end %>
+    </ul>
+    <%= link_to "New Article", new_article_path, class: "btn btn-primary" %>
+    </div>
+</div>
+</div>
