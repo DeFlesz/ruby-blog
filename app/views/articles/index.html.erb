@@ -1,9 +1,11 @@
 <div class="m-2 ">
 <% if user_signed_in? %>
     <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-link" %>
+    <!--
     <% if current_user.admin? %>
-        jesteś adminem harry
+        logged in as admin
     <% end %>
+    -->
 <% else %>
     <%= button_to "Sign in", new_user_session_path, class: "btn btn-link" %>
     <%# <button class="btn btn-link">Sign in</button><button class="btn btn-link">Sign up</button> %>
