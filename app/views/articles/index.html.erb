@@ -1,15 +1,4 @@
 <div class="m-2 ">
-<% if user_signed_in? %>
-    <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "btn btn-link" %>
-    <!--
-    <% if current_user.admin? %>
-        logged in as admin
-    <% end %>
-    -->
-<% else %>
-    <%= button_to "Sign in", new_user_session_path, class: "btn btn-link" %>
-    <%# <button class="btn btn-link">Sign in</button><button class="btn btn-link">Sign up</button> %>
-<% end %>
 
 <div class="card" style="margin: auto; max-width: 48rem;">
     <div class="card-body">
@@ -26,7 +15,7 @@
 
     <ul class="list-group mb-3">
         <% if Article.public_count < 1 %>
-            Nie ma artykułów :c
+            No articles...
         <% end %>
         <% @articles.each do |article| %>
             <% unless article.archived? || current_user == article.user %>
@@ -50,5 +39,16 @@
     <%= link_to "New Article", new_article_path, class: "btn btn-primary" %>
     <% end %>
     </div>
+</div>
+<div class="d-flex mt-2">
+<% if user_signed_in? %>
+    <%= link_to "Sign out", destroy_user_session_path, method: :delete, class: "ms-2" %>
+    <% if current_user.admin? %>
+        <%= link_to "Admin panel", admin_users_path, class: "ms-2" %>
+    <% end %>
+<% else %>
+    <%= link_to "Sign in", new_user_session_path, class: "ms-2" %>
+    <%# <button class="btn btn-link">Sign in</button><button class="btn btn-link">Sign up</button> %>
+<% end %>
 </div>
 </div>

@@ -31,6 +31,9 @@
         <hr>
 
         <h4>Comments</h4>
+        <!--
+        <%= @article.comments.inspect %>
+        -->
         <% if Comment.public_count < 1 %>
             No comments...
         <% end %>
