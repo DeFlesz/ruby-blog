@@ -1,12 +1,13 @@
 class Admin::CommentsController < ApplicationController
   include Pundit::Authorization
-  
+
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   def index
     authorize [:admin]
     @user = User.find(params[:user_id])
-    @comments = @user.articles.find(params[:article_id]).comments
+    @article = @user.articles.find(params[:article_id])
+    @comments = @article.comments
   end
 
   private

@@ -5,7 +5,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><%= link_to "Articles", articles_path %></li>
-            <li class="breadcrumb-item"><%= link_to @article.title, article_path(@article) %></li>
+            <li class="breadcrumb-item"><%= link_to "@#{@article.user.displayname} - #{@article.title}", article_path(@article) %></li>
             <li class="breadcrumb-item active" aria-current="page">Edit Article</li>
         </ol>
     </nav>

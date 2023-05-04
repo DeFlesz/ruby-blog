@@ -10,7 +10,7 @@
                 <% if @user == nil %>
                 <li class="breadcrumb-item active" aria-current="page">Articles</li>
                 <% else %>
-                <li class="breadcrumb-item active" aria-current="page"><%= @user.displayname %></li>
+                <li class="breadcrumb-item active" aria-current="page">@<%= @user.displayname %></li>
                 <% end %>
             </ol>
         </nav>

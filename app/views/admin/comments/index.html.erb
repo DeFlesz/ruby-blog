@@ -7,8 +7,8 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><%= link_to "Admin panel", admin_users_path %></li>
-                <li class="breadcrumb-item"><%= link_to @user.displayname, admin_user_articles_path(@user) %></li>
-                <li class="breadcrumb-item active" aria-current="page">comments</li>
+                <li class="breadcrumb-item"><%= link_to "@#{@user.displayname}", admin_user_articles_path(@user) %></li>
+                <li class="breadcrumb-item active" aria-current="page"><%= @article.title %> - comments</li>
             </ol>
         </nav>
     </div>
